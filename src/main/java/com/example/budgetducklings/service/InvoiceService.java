@@ -3,6 +3,7 @@ package com.example.budgetducklings.service;
 import com.example.budgetducklings.model.Payment;
 import com.example.budgetducklings.repository.InvoiceRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 
@@ -16,16 +17,8 @@ public class InvoiceService {
     }
 
     //Redirect to invoiceRepository to create a payment
-    public void createPayment(String username,String title,String date,String description,String category,String price){
-        double priceAsDouble;
-        try {
-            priceAsDouble = Double.parseDouble(price);
-        }
-        catch (Exception e)
-        {
-            priceAsDouble = 0;
-        }
-        Payment payment = new Payment(username, title, date, description, category,priceAsDouble);
+    public void createPayment(String username, Payment payment){
+        payment.setUsername(username);
         invoiceRepository.createPayment(payment);
     }
 
@@ -46,35 +39,27 @@ public class InvoiceService {
     }
 
     //Updates the Payment in editPayment and sends the data to invoiceRepository
-    public void updatePayment(String title,String date,String description,String category,String price){
+    public void updatePayment(Payment payment){
         double priceAsDouble;
-        Payment payment = editPayment;
-        if(!title.equals(""))
+        Payment payment1 = editPayment;
+        if(!payment.getTitle().equals(""))
         {
-            payment.setTitle(title);
+            payment1.setTitle(payment.getTitle());
         }
-        if(!date.equals(""))
+        if(!payment.getDate().equals(""))
         {
-            payment.setDate(date);
+            payment1.setDate(payment.getDate());
         }
-        if(!description.equals(""))
+        if(!payment.getDescription().equals(""))
         {
-            payment.setDescription(description);
+            payment1.setDescription(payment.getDescription());
         }
-        if(!category.equals(""))
+        if(!payment.getCategory().equals(""))
         {
-            payment.setCategory(category);
+            payment1.setCategory(payment.getCategory());
         }
-            if (!price.equals("")) {
-                //Try for handling none doubles
-                try {
-                    priceAsDouble = Double.parseDouble(price);
-                }
-                catch (Exception e)
-                {
-                    priceAsDouble = 0;
-                }
-                payment.setPrice(priceAsDouble);
+            if (!payment.getPrice().equals("")) {
+                payment1.setPrice(payment.getPrice());
             }
         invoiceRepository.updatePayment(payment);
     }

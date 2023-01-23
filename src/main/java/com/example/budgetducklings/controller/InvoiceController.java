@@ -5,10 +5,7 @@ import com.example.budgetducklings.service.InvoiceService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -45,11 +42,11 @@ public class InvoiceController {
     }
     //Creates a payment
     @PostMapping("payment")
-    public String createPayment(HttpSession session, @RequestParam String title, @RequestParam String date, @RequestParam String description, @RequestParam String category, @RequestParam String price)
+    public String createPayment(HttpSession session, @ModelAttribute Payment payment)
     {
         if (session.getAttribute("username") != null) {
             String username = (String) session.getAttribute("username");
-            invoiceService.createPayment(username, title, date, description, category, price);
+            invoiceService.createPayment(username, payment);
 
             return "redirect:invoice";
         }
@@ -79,9 +76,9 @@ public class InvoiceController {
 
     //Gets the input data and sends it to invoiceService for update
     @PostMapping("edit")
-    public String showEditId(HttpSession session, @RequestParam String title, @RequestParam String date, @RequestParam String description, @RequestParam String category, @RequestParam String price){
+    public String showEditId(HttpSession session, @ModelAttribute Payment payment){
         if (session.getAttribute("username") != null) {
-            invoiceService.updatePayment(title, date, description, category, price);
+            invoiceService.updatePayment(payment);
             return "redirect:invoice";
         }
 

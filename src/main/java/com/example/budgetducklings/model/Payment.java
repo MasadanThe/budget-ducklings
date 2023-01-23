@@ -6,7 +6,7 @@ public class Payment {
     private String date;
     private String description;
     private String category;
-    private double price;
+    private String price;
 
     private int id;
 
@@ -14,7 +14,7 @@ public class Payment {
         id = 0;
     }
 
-    public Payment(String username, String title, String date, String description, String category, double price){
+    public Payment(String username, String title, String date, String description, String category, String price){
         this.username = username;
         this.title = title;
         this.date = date;
@@ -64,11 +64,11 @@ public class Payment {
         this.category = category;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

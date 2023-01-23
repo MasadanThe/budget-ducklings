@@ -49,7 +49,7 @@ public class InvoiceRepository {
     //Creates a table
     private void createTable(){
         String sql = "CREATE TABLE payment (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255),title VARCHAR(255), date VARCHAR(255)," +
-                " description VARCHAR(255), category VARCHAR(255), price DOUBLE)";
+                " description VARCHAR(255), category VARCHAR(255), price VARCHAR(255))";
         try
         {
             Statement statement = connection.createStatement();
@@ -72,7 +72,7 @@ public class InvoiceRepository {
             preparedStatement.setString(3, payment.getDate());
             preparedStatement.setString(4, payment.getDescription());
             preparedStatement.setString(5, payment.getCategory());
-            preparedStatement.setDouble(6, payment.getPrice());
+            preparedStatement.setString(6, payment.getPrice());
             preparedStatement.execute();
         }
         catch(Exception e)
@@ -98,7 +98,7 @@ public class InvoiceRepository {
                 payment.setDate(resultSet.getString("date"));
                 payment.setDescription(resultSet.getString("description"));
                 payment.setCategory(resultSet.getString("category"));
-                payment.setPrice(resultSet.getDouble("price"));
+                payment.setPrice(resultSet.getString("price"));
                 payment.setId(resultSet.getInt("id"));
                 foundPayments.add(payment);
             }
@@ -121,7 +121,7 @@ public class InvoiceRepository {
             preparedStatement.setString(3, payment.getDate());
             preparedStatement.setString(4, payment.getDescription());
             preparedStatement.setString(5, payment.getCategory());
-            preparedStatement.setDouble(6, payment.getPrice());
+            preparedStatement.setString(6, payment.getPrice());
             preparedStatement.setInt(7, payment.getId());
             preparedStatement.execute();
 
@@ -171,7 +171,7 @@ public class InvoiceRepository {
             payment.setDate(resultSet.getString("date"));
             payment.setDescription(resultSet.getString("description"));
             payment.setCategory(resultSet.getString("category"));
-            payment.setPrice(resultSet.getDouble("price"));
+            payment.setPrice(resultSet.getString("price"));
             payment.setId(resultSet.getInt("id"));
         }
 
