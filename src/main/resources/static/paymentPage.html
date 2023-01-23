@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
+</head>
+<body>
+<form action="payment" method="POST">
+    <h2>Create payment!</h2>
+    <div>
+        <label>Title</label>
+        <input type="text" name="title">
+    </div>
+    <div>
+        <label>Date</label>
+        <input type="text" name="date">
+    </div>
+    <div>
+        <label>Description</label>
+        <input type="text" name="description">
+    </div>
+    <div>
+        <select name="category">
+            <option value="To/From Work">To/From Work</option>
+            <option value="Lunch Meeting">Lunch Meeting</option>
+            <option value="Over Time Work">Over Work Tine</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div>
+        <label>Price</label>
+        <input type="text" name="price">
+    </div>
+
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>

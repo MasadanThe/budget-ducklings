@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Page</title>
+</head>
+<body>
+<form action="edit" method="POST">
+    <h2>Edit here, leave empty if you do not want to edit!</h2>
+    <div>
+        <label>Title</label>
+        <input type="text" name="title">
+    </div>
+    <div>
+        <label>Date</label>
+        <input type="text" name="date">
+    </div>
+    <div>
+        <label>Description</label>
+        <input type="text" name="description">
+    </div>
+    <div>
+        <select name="category">
+            <option value="To/From Work">To/From Work</option>
+            <option value="Lunch Meeting">Lunch Meeting</option>
+            <option value="Over Time Work">Over Work Tine</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div>
+        <label>Price</label>
+        <input type="text" name="price">
+    </div>
+
+    <button type="submit">Edit</button>
+</form>
+<form action="delete" method="POST">
+    <button type="submit">Delete</button>
+</form>
+</body>
+</html>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="payment: ${payment}">
+        <td th:text="${payment.title}" />
+        <td th:text="${payment.date}" />
+        <td th:text="${payment.description}" />
+        <td th:text="${payment.category}" />
+        <td th:text="${payment.price}" />
+    </tr>
+    </tbody>
+</table>

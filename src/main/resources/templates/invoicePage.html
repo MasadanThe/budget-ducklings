@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Page</title>
+</head>
+<body>
+<form action="logout" method="POST">
+    <h2>Invoice page!</h2>
+    <button type="submit">Logout!</button>
+</form>
+<form action="payment" method="GET">
+    <button type="submit">Create new payment!</button>
+</form>
+<form action="edit" method="GET">
+    <label>Write ID of the payment you want to edit or delete</label>
+    <input type="text" name="id">
+    <button type="submit">Edit/Delete payment!</button>
+</form>
+</body>
+</html>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="payment: ${payments}">
+        <td th:text="${payment.id}" />
+        <td th:text="${payment.title}" />
+        <td th:text="${payment.date}" />
+        <td th:text="${payment.description}" />
+        <td th:text="${payment.category}" />
+        <td th:text="${payment.price}" />
+    </tr>
+    </tbody>
+</table>
